@@ -1,0 +1,133 @@
+.light-theme{
+    background-color: rgb(255, 255, 255);
+}
+.dark-theme{
+    background-color: black;
+}
+.cardContainer{
+    width: 800px;
+
+}
+ .bodyContainerProfile, .bodyContainerAcademic{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+.titleHome, .titleMyProfile, .titleMyAcademic{
+    margin: 3%;
+}
+
+#colHome{
+    margin: 2% 0;
+}
+#formContainerProfileData{
+    width: 800px;
+    height: 600px;
+}
+.lagartixaBB{
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+}
+
+span{
+    margin: 1% 1%;
+}
+
+#spanbadge{
+    color: white;
+}
+
+.examsContainer, .asistenciasContainer{
+    width: 45vw;
+    height: 400px;
+    margin: 2% 0;
+
+}
+.examsContainer, h2{
+text-align: center;
+}
+
+.asistenciasContainer, h2{
+    text-align: center;
+    }
+
+    .badgeAcademic{
+        margin: 1% 1%;
+    }
+
+    #changePass{
+        margin-left: 8px;
+        font-size: 10px;
+        font-weight: bold;
+        width: 30px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #containerChangePass{
+        display: flex;
+
+    }
+
+.sidebar{
+    width: 20%;
+    height: 100vh;
+    padding-top: 60px;
+    padding-left: 10px;
+    border-left: 2px solid rgba(128, 128, 128, 0.458);
+}
+
+.bodyContainer{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.containerNoticias{
+    width: 75%;
+    height: 100vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+td{
+    font-size: 10px;
+}
+.examen{
+    padding: 3%;
+    margin: 3% auto;
+    display: flex;
+    width: 90%;
+    height: 300px;
+    background-color: rgb(234, 230, 230);
+    height: 60px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    border-radius: 8px;
+}
+
+.examen div{
+    margin: 3% auto;
+    display: flex;
+    width: 90%;
+    height: 100%;
+    background-color: rgb(234, 230, 230);
+    height: 60px;
+    flex-direction: column;
+    font-size: 10px;
+    justify-content: center;
+    align-items: center;
+
+}
