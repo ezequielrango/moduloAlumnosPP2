@@ -85,7 +85,7 @@ if (is_array($dataAcademica) && count($dataAcademica) > 0) {
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a id='proximosExamenes' class="nav-link" href="#"> <span class="icon"><i class='bx bx-task'></i></span>Próximos exámenes</a>
+                        <a id='proximosExamenes' href="prox.exams.php" class="nav-link" href="#"> <span class="icon"><i class='bx bx-task'></i></span>Próximos exámenes</a>
                     </li>
                     <li class="nav-item dropdown">
 
@@ -98,7 +98,6 @@ if (is_array($dataAcademica) && count($dataAcademica) > 0) {
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="icon"><i class='bx bx-news'></i></span> Solicitar certificados
                         </a>

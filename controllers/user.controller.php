@@ -50,28 +50,5 @@ class UserController
         }
     }
 
-    // public function pagar($monto, Cliente $user)
-    // {
-    //     $repo = new UserRepository();
-    //     $user->setDatos($user->getSaldo() - $monto);
 
-    //     if ($repo->actualizar($user)) {
-    //         session_start();
-    //         $_SESSION['user'] = serialize($user);
-    //         return [true, "Datos actualizados correctamente"];
-    //     } else {
-    //         return [false, "Error al actualizar datos"];
-    //     }
-    // }
-
-    // public function eliminar(Cliente $cliente)
-    // {
-    //     $repo = new UserRepository();
-
-    //     if($repo->eliminar($cliente)) {
-    //         return [true, "user eliminado correctamente"];
-    //     } else {
-    //         return [false, "Error al eliminar el user"];
-    //     }
-    // }
 }
