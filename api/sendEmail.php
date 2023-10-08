@@ -88,6 +88,7 @@ if (isset($_GET['download']) && $_GET['download'] === 'true'){
     $phpmailer->Port = $credenciales['port'];
     $phpmailer->Username = $credenciales['usernameemail'];
     $phpmailer->Password = $credenciales['passwordemail'];
+    $phpmailer->CharSet = 'UTF-8';
 
     $phpmailer->SetFrom($credenciales['email'], $credenciales['sender']);
     $phpmailer->AddAddress($credenciales['email'], $credenciales['receiver']);
