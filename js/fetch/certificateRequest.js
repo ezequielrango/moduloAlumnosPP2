@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const alumnoInput = document.getElementById("alumnoInput");
     const materiaSelectExams = document.getElementById("materiaSelectExams");
 
+let responseExams = null;
+let examenSeleccionadoFecha = null; // Nueva variable para almacenar la fecha del examen
+
     //CARGA DATOS MODAL CONSTANCIA EXAMEN
     materiaSelect.addEventListener("change", function () {
         const materiaSeleccionada = materiaSelect.value;
@@ -21,7 +24,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (xhr.readyState === 4 && xhr.status === 200) {
 
                     const respuesta = xhr.responseText;
-                    console.log(respuesta)
                     if (respuesta) {
                         // Maneja la respuesta del servidor aquí
 
@@ -175,15 +177,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     const respuesta = xhr.responseText;
                     console.log(typeof respuesta)
                     if (respuesta) {
-                        const data = JSON.parse(xhr.responseText);
-                        if (data.success) {
+                        responseExams = JSON.parse(xhr.responseText);
+                        if (responseExams.success) {
                             showToast('Puedes inscribirte al examen de la materia')
-                            console.log(data)
-                            // Limpia el contenedor de exámenes disponibles
                             examenesDisponibles.innerHTML = '';
 
                             // Agrega los exámenes disponibles al contenedor
-                            data.exams.forEach(examen => {
+                            responseExams.exams.forEach(examen => {
                                 const examenDiv = document.createElement('div');
                                 examenDiv.classList.add("examen");
                                 examenDiv.innerHTML = `
@@ -207,4 +207,53 @@ document.addEventListener("DOMContentLoaded", function () {
             xhr.send("materiaSelect=" + materiaSeleccionada);
         }
     });
+
+    document.getElementById('confirmBtnInscriptionExam').addEventListener("click", async () => {
+        const radioButtons = document.querySelectorAll('input[name="examenSelect"]');
+        let examenSeleccionadoId = null;
+        const materiaSeleccionada = materiaSelectExams.value;
+        const examenesDisponibles = document.getElementById('examenesDisponibles');
+
+        radioButtons.forEach((radioButton, index) => {
+            if (radioButton.checked) {
+                examenSeleccionadoId = radioButton.value;
+                // Obtén la fecha del examen del atributo "data-fecha" en el radio button
+                examenSeleccionadoFecha = responseExams.exams[index].fecha;
+                
+            }
+        });
+        // Verifica que se haya seleccionado un examen
+        if (examenSeleccionadoId !== null) {
+            // Agrega el ID del examen a los datos a enviar
+            data = {
+                examenId: examenSeleccionadoId,
+                materiaId: materiaSeleccionada,
+                fechaExamen: examenSeleccionadoFecha // Agregamos la fecha del examen
+            };
+
+            // Realiza una solicitud POST con los datos incluyendo el ID del examen
+            fetch('../api/inscribirExamen.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:',error);
+                });
+            showToast('Inscripción al examen exitosa');
+            setTimeout(() => {
+                showToast('Constancia enviada al Email');
+            }, 5300); 
+        } else {
+            showToast('Por favor, selecciona un examen');
+        }
+    });
+
+
 });

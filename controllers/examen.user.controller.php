@@ -52,6 +52,19 @@ class ExamenUserController
             return  $exams;
         }
     }
+
+    public function InscriptExam($userId, $materiaId,$fechaExamen, $examId)
+    {
+        $repo = new ExamenRepository();
+        $Inscription = $repo->InscriptExam($userId, $materiaId,$fechaExamen, $examId);
+    
+        if ($Inscription === false) {
+            return [false, "Error al recuperar exámenes del usuario"];
+        } else {
+            return  $Inscription;
+        }
+    }
+    
     
 
 }
