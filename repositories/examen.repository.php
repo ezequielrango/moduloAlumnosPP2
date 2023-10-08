@@ -164,4 +164,27 @@ public function getExamenesByUserIdAndMateriIdFuture($userId, $materiaId)
         return false;
     }
 
+    public function InscriptExam($userId, $materiaId, $fechaExamen, $examId)
+    {
+        $currentDate = date("Y-m-d");
+        $fechaInscripcion = $currentDate; // Fecha de inscripción igual a la fecha actual
+    
+        $q = "INSERT INTO inscripciones (Alumno_ID, Materia_ID, FechaInscripcion, TipoInscripcion_ID, Fecha, Examen_ID ) VALUES (?, ?, ?, ?, ?, ?)";
+        $query = self::$conexion->prepare($q);
+        
+        // Debes definir un TipoInscripcion_ID apropiado para la inserción
+        // Supongamos que TipoInscripcion_ID es 1 para una inscripción regular
+        $tipoInscripcionId = 2;
+        
+        $query->bind_param("iisisi", $userId, $materiaId, $fechaInscripcion, $tipoInscripcionId, $fechaExamen, $examId);
+    
+        if ($query->execute()) {
+            // Si la inserción fue exitosa, puedes retornar true o cualquier otro valor que desees
+            return true;
+        }
+    
+        return false;
+    }
+    
+
 }
