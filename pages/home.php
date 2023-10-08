@@ -218,20 +218,6 @@ if (isset($_SESSION['user'])) {
                             </select>
                             <div id="examenesDisponibles"></div> <!-- Contenedor para los exámenes disponibles -->
                 </div>
-                <div style="display: flex; justify-content:space-around">
-                    <div>
-                        <input id='radioDownload1' class="form-check-input" type="radio" name="download" id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Descargar
-                        </label>
-                    </div>
-                    <div>
-                        <input id='radioEmail1' class="form-check-input" type="radio" name="download" id="flexRadioDefault2" checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Enviar a tu email
-                        </label>
-                    </div>
-                </div>
 
                 </form>
                 <div class="modal-footer">
