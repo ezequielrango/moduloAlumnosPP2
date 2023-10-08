@@ -12,6 +12,14 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bodyContainerAcademic{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
     justify-content: start;
     align-items: center;
     flex-direction: column;
@@ -80,6 +88,16 @@ text-align: center;
     height: 100vh;
     padding-top: 60px;
     padding-left: 10px;
+    border-left: 2px solid rgba(128, 128, 128, 0.458);
+}
+
+.containerprofile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 80%;
+    height: 100vh;
     border-left: 2px solid rgba(128, 128, 128, 0.458);
 }
 

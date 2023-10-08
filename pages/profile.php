@@ -46,62 +46,193 @@
 
     <body id='body' class="light-theme">
         <div class="bodyContainerProfile">
-            <h1 class="titleMyProfile">Mi perfil</h1>
-            <div id='toastCasero' style="position:absolute; top:60px; border-radius:8px;color:white; font-weight:bold; font-size: 20px; right: 40px; z-index:9999; display: none; width:400px;height:70px; background-color:greenyellow">
-                <span id="spanToast" style="color:white; font-weight:bold; font-size: 36px; "></span>
-            </div>
-            <form id='formContainerProfileData'>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <div id='containerChangePass'>
-                                <label id='labelProfile' for="staticEmail">Contraseña</label>
-                                <button type="button" id="changePass" class="btn btn-warning">
-                                    <spanv class="icon"><i class='bx bx-sync'></i></spanv>
-                                </button>
+            <div class="containerprofile">
+                <h1 class="titleMyProfile">Mi perfil</h1>
+                <div id='toastCasero' style="position:absolute; top:60px; border-radius:8px;color:white; font-weight:bold; font-size: 20px; right: 40px; z-index:9999; display: none; width:400px;height:70px; background-color:greenyellow">
+                    <span id="spanToast" style="color:white; font-weight:bold; font-size: 36px; "></span>
+                </div>
+                <form id='formContainerProfileData'>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <div id='containerChangePass'>
+                                    <label id='labelProfile' for="staticEmail">Contraseña</label>
+                                    <button type="button" id="changePass" class="btn btn-warning">
+                                        <spanv class="icon"><i class='bx bx-sync'></i></spanv>
+                                    </button>
+                                </div>
+                                <input class="form-control form-control-sm" type="password" value="<?= $password; ?>" aria-label="Password" readonly>
+    
                             </div>
-                            <input class="form-control form-control-sm" type="password" value="<?= $password; ?>" aria-label="Password" readonly>
-
+                            <div class="mb-3">
+                                <label id='labelProfile' for="staticEmail">Nombre</label>
+                                <input class="form-control form-control-sm" type="text" value="<?= $user_name; ?>" aria-label="Nombre" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label id='labelProfile' for="staticEmail">Apellido</label>
+                                <input class="form-control form-control-sm" type="text" value="<?= $last_name; ?>" aria-label="Apellido" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label id='labelProfile' for="staticEmail">Email</label>
+                                <input class="form-control form-control-sm" type="text" value="<?= $email; ?>" aria-label="Email" readonly>
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label id='labelProfile' for="staticEmail">Nombre</label>
-                            <input class="form-control form-control-sm" type="text" value="<?= $user_name; ?>" aria-label="Nombre" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label id='labelProfile' for="staticEmail">Apellido</label>
-                            <input class="form-control form-control-sm" type="text" value="<?= $last_name; ?>" aria-label="Apellido" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label id='labelProfile' for="staticEmail">Email</label>
-                            <input class="form-control form-control-sm" type="text" value="<?= $email; ?>" aria-label="Email" readonly>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label id='labelProfile' for="staticEmail">Teléfono</label>
+                                <input class="form-control form-control-sm" type="text" value="<?= $phone; ?>" aria-label="Teléfono" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label id='labelProfile' for="staticEmail">DNI</label>
+                                <input class="form-control form-control-sm" type="text" value="<?= $dni; ?>" aria-label="DNI" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label id='labelProfile' for="staticEmail">Legajo</label>
+                                <input class="form-control form-control-sm" type="text" value="<?= $nro_legajo; ?>" aria-label="Legajo" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <button id='confirmChange' type="submit" class="btn btn-primary" style="display: none;">Confirmar cambio de contraseña</button>
+                            </div>
+    
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label id='labelProfile' for="staticEmail">Teléfono</label>
-                            <input class="form-control form-control-sm" type="text" value="<?= $phone; ?>" aria-label="Teléfono" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label id='labelProfile' for="staticEmail">DNI</label>
-                            <input class="form-control form-control-sm" type="text" value="<?= $dni; ?>" aria-label="DNI" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <label id='labelProfile' for="staticEmail">Legajo</label>
-                            <input class="form-control form-control-sm" type="text" value="<?= $nro_legajo; ?>" aria-label="Legajo" readonly>
-                        </div>
-                        <div class="mb-3">
-                            <button id='confirmChange' type="submit" class="btn btn-primary" style="display: none;">Confirmar cambio de contraseña</button>
-                        </div>
+    
+    
+                    <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                </form>
 
+            </div>
+
+            <div class="sidebar">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Calendario acadèmico
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <table class="table">
+                                <thead>
+                                    <tr class="table-light">
+                                        <th scope="col">Desde</th>
+                                        <th scope="col">Hasta</th>
+                                        <th scope="col">Actividad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-success">
+
+                                        <td>12/10/23</td>
+                                        <td>12/10/23</td>
+                                        <td>Fin clases</td>
+                                    </tr>
+                                    <tr class="table-warning">
+
+                                        <td>17/10/23</td>
+                                        <td>06/11/23</td>
+                                        <td>Parciales</td>
+                                    </tr>
+                                    <tr class="table-warning">
+
+                                        <td>30/10/23</td>
+                                        <td>07/11/23</td>
+                                        <td>Entrega Notas Bedelia</td>
+                                    </tr>
+                                    <tr class="table-danger">
+
+                                        <td>06/11/23</td>
+                                        <td>10/11/23</td>
+                                        <td>Ins. 1er Finales</td>
+
+                                    </tr>
+                                    <tr class="table-danger">
+
+                                        <td>13/11/23</td>
+                                        <td>34/10/23</td>
+                                        <td>Primer llamado finales</td>
+                                    </tr>
+                                    </tr>
+                                    <tr class="table-danger">
+
+                                        <td>06/11/23</td>
+                                        <td>10/11/23</td>
+                                        <td>Ins. 2do llamado Finales</td>
+
+                                    </tr>
+                                    <tr class="table-danger">
+
+                                        <td>13/11/23</td>
+                                        <td>34/10/23</td>
+                                        <td>Segundo llamado finales</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Parciales
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <img src="../assets/images/parciales.png" style="width: 200px; height:100px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Documentaciòn a presentar
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong style="font-size: 12px;">
+                                Partida de nacimiento legalizada.<br>
+                                Fotocopia del documento nacional de identidad.<br>
+                                Título de estudios secundarios o constancia actualizada de título en trámite.<br>
+                                Certificado de buena salud. En caso de contar con algún problema de salud debe declararlo en dicho certificado.<br>
+                                Abonar el monto correspondiente a Cooperador de la Escuela.
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingFour">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            Contacto
+                        </button>
+                    </h2>
+                    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong style="font-size: 12px;">BEDELIA: para trámites generales de los alumnos. <br>
 
+                                Horario de atencón: de lunes a viernes de 19:30 a 21:30 primer piso.<br>
 
-                <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-            </form>
+                                info@terciariourquiza.edu.ar<br>
+
+                                SECRETARIA: para asistencia docente.<br>
+
+                                Horario de atención: de lunes a viernes de 08:00 a 22:00 planta baja.<br>
+
+                                escuelaurquizaofrecimientos@gmail.com<br>
+
+                                secretara49urquiza@gmail.com</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         </div>
 
+
+        
 
         
 
