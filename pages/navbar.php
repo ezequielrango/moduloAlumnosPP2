@@ -98,7 +98,6 @@ if (is_array($dataAcademica) && count($dataAcademica) > 0) {
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="icon"><i class='bx bx-news'></i></span> Solicitar certificados
                         </a>
