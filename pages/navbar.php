@@ -7,7 +7,7 @@ if (isset($_SESSION['user'])) {
     $last_name = $user->getApellido();
     $userId = $user->getId();
 
-        // var_dump($user->getId());
+    // var_dump($user->getId());
     // die();
     $email = $user->getEmail();
     $phone = $user->getTelefono();
@@ -24,24 +24,24 @@ if (isset($_SESSION['user'])) {
     $userController = new UserController();
     $materias = $examenController->getMateriasByUserId($userId);
     $dataAcademica = $userController->getCareerDataByUser($userId);
-// Verificar si $dataAcademica es un arreglo válido
-if (is_array($dataAcademica) && count($dataAcademica) > 0) {
-    $fechaInscripcion = $dataAcademica[1]['fecha_inscripcion'] ?? '';
-    $comision = $dataAcademica[1]['comision'] ?? '';
-    $carrera = $dataAcademica[1]['carrera'] ?? '';
-    $materiasAprobadas = $dataAcademica[1]['materias_aprobadas'] ?? '';
-    $materiasPendientes = $dataAcademica[1]['materias_pendientes'] ?? '';
+    // Verificar si $dataAcademica es un arreglo válido
+    if (is_array($dataAcademica) && count($dataAcademica) > 0) {
+        $fechaInscripcion = $dataAcademica[1]['fecha_inscripcion'] ?? '';
+        $comision = $dataAcademica[1]['comision'] ?? '';
+        $carrera = $dataAcademica[1]['carrera'] ?? '';
+        $materiasAprobadas = $dataAcademica[1]['materias_aprobadas'] ?? '';
+        $materiasPendientes = $dataAcademica[1]['materias_pendientes'] ?? '';
+    } else {
+        // No se encontraron datos académicos para el usuario, asignar valores vacíos o manejar el caso de error aquí
+        $fechaInscripcion = '';
+        $comision = '';
+        $carrera = '';
+        $materiasAprobadas = '';
+        $materiasPendientes = '';
+    }
 } else {
-    // No se encontraron datos académicos para el usuario, asignar valores vacíos o manejar el caso de error aquí
-    $fechaInscripcion = '';
-    $comision = '';
-    $carrera = '';
-    $materiasAprobadas = '';
-    $materiasPendientes = '';
-}
-  } else {
     header('Location: index.php');
-  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,13 +108,15 @@ if (is_array($dataAcademica) && count($dataAcademica) > 0) {
                     </li>
                 </ul>
             </div>
-
-            <span class="icon"><i class='bx bx-adjust'></i></span>
-            <div class="form-check form-switch">
-                <input class="form-check-input" name='theme' type="checkbox" id="themeSwitch">
+            <div style="display: flex; align-items:center; text-align:center; justify-content:space-between; width:120px;">
+                <span style="font-size:12px">Tema</span>
+                <span class="icon"><i class='bx bx-adjust'></i></span>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" name='theme' type="checkbox" id="themeSwitch">
+                </div>
             </div>
 
-            <a href="logout.php" class="btn btn-secondary btn-sm">Cerrar sesión</a>
+            <a href="logout.php" class="btn btn-primary btn-sm">Cerrar sesión</a>
             <img class="round" id='avatar' style="margin-left: 30px; margin-right:20px;" width="60" height="60" avatar="<?= $user_name . ' ' . $last_name; ?>">
     </nav>
 
