@@ -1,6 +1,6 @@
 <?php
 
-abstract class Examen 
+class Examen 
 {
     protected $id;
     protected $alumnoId;

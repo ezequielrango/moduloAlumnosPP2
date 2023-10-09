@@ -24,10 +24,14 @@
     align-items: center;
     flex-direction: column;
 }
-.titleHome, .titleMyProfile, .titleMyAcademic{
+.titleHome, .titleMyProfile{
     margin: 3%;
 }
 
+.titleMyAcademic{
+    margin: 3%;
+    margin-right: 7%;
+}
 #colHome{
     margin: 2% 0;
 }
@@ -37,8 +41,13 @@
 }
 .lagartixaBB{
     display: flex;
-    width: 100vw;
-    justify-content: center;
+    width: 25%;
+    justify-content: start;
+    flex-direction: column;
+    align-items: start;
+    box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-webkit-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-moz-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
 }
 
 span{
@@ -49,11 +58,24 @@ span{
     color: white;
 }
 
-.examsContainer, .asistenciasContainer{
-    width: 45vw;
-    height: 400px;
-    margin: 2% 0;
+.examsContainer{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-webkit-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-moz-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+}
 
+.asistenciasContainer{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-webkit-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-moz-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
 }
 .examsContainer, h2{
 text-align: center;
@@ -64,7 +86,7 @@ text-align: center;
     }
 
     .badgeAcademic{
-        margin: 1% 1%;
+        margin: 0 1%;
     }
 
     #changePass{
@@ -148,4 +170,10 @@ td{
     justify-content: center;
     align-items: center;
 
+}
+
+.dataAndExams{
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
 }

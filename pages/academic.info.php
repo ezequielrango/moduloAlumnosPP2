@@ -8,6 +8,7 @@ if (isset($_SESSION['user'])) {
   require_once '../controllers/examen.user.controller.php';
   $examenController = new ExamenUserController();
   $materias = $examenController->getMateriasByUserId($userId);
+  $examsHistory = $examenController->getAllExamsByUserId($userId);
 } else {
   header('Location: index.php');
 }
@@ -27,97 +28,102 @@ if (isset($_SESSION['user'])) {
 
 <body id='body' class="light-theme">
   <div class="bodyContainerAcademic">
-    <h1 class="titleMyAcademic">Tu Información</h1>
+    <h1 class="titleMyAcademic">Historial académico</h1>
     <div id='toastCasero' style="position:absolute; top:60px; border-radius:8px;color:white; font-weight:bold; font-size: 20px; right: 40px; z-index:9999; display: none; width:400px;height:70px; background-color:greenyellow">
       <span id="spanToast" style="color:white; font-weight:bold; font-size: 36px; "></span>
     </div>
-    <div class="lagartixaBB">
-      <h5 id='spanbadge' class="badgeAcademic"><span id='spanbadge' class="badge bg-primary"> <?= $nro_legajo; ?> </span></h5>
-      <h5 id='spanbadge' class="badgeAcademic"><span id='spanbadge' class="badge bg-primary"> Tecnicatura en Desarrollo de Software </span></h5>
-      <h5 id='spanbadge' class="badgeAcademic"><span id='spanbadge' class="badge bg-primary"> 3.2 </span></h5>
-      <h5 id='spanbadge' class="badgeAcademic"><span id='spanbadge' class="badge bg-primary">Total materias: 30</span></h5>
-      <h5 id='spanbadge' class="badgeAcademic"><span id='spanbadge' class="badge bg-primary">Materias aprobadas: 25 </span></h5>
-      <h5 id='spanbadge' class="badgeAcademic"><span id='spanbadge' class="badge bg-primary">Materias pendientes: 5 </span></h5>
-    </div>
+    <div class="dataAndExams">
+      <div class="lagartixaBB">
+        <h2>Tu Información</h2>
+        <h5 id='spanbadge' class="badgeAcademic"><span id='spanbadge' class="badge bg-primary">Comisión: 3.2 </span></h5> <br>
+        <h5 id='spanbadge' class="badgeAcademic"><span id='spanbadge' class="badge bg-primary"> <?= $nro_legajo; ?> </span></h5>
+        <h5 id='spanbadge' class="badgeAcademic"><span id='spanbadge' class="badge bg-primary"> Tecnicatura en Desarrollo de Software </span></h5>
+        <h5 id='spanbadge' class="badgeAcademic"><span id='spanbadge' class="badge bg-primary">Total materias: 30</span></h5>
+        <h5 id='spanbadge' class="badgeAcademic"><span id='spanbadge' class="badge bg-primary">Materias aprobadas: 25 </span></h5>
+        <h5 id='spanbadge' class="badgeAcademic"><span id='spanbadge' class="badge bg-primary">Materias pendientes: 5 </span></h5>
+      </div>
 
-    <div class="examsContainer">
-      <h2>Tus exámenes</h2>
+      <div class="examsContainer">
+        <h2>Tus exámenes</h2>
+        <table class="table">
+          <thead>
+            <tr class="table-light">
+              <th scope="col">Materia</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Profesor</th>
+              <th scope="col">Resultado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($examsHistory as $exam) { ?>
+              <tr class="<?php echo ($exam->getResultado() >= 6) ? 'table-success' : 'table-danger'; ?>">
+                <td style="font-size: 12px;"><?= $exam->getMateria(); ?></td>
+                <td style="font-size: 12px;"><?= $exam->getFecha(); ?></td>
+                <td style="font-size: 12px;"><?= $exam->getProfesor(); ?></td>
+                <td style="font-size: 12px;"><?= $exam->getResultado(); ?></td>
+              </tr>
+            <?php } ?>
+          </tbody>
+        </table>
 
-      <div class="accordion accordion-flush" id="accordionFlushExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-              Matemática
-            </button>
-          </h2>
-          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">
-              <table class="table table-sm table-borderless">
-                <thead>
-                  <tr>
-                    <th scope="col">Fecha</th>
-                    <th scope="col">Resultado</th>
-                    <th scope="col">Profesor</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>15/10/2023</td>
-                    <td>8</td>
-                    <td>Pepe Gómez</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+      </div>
+
+      <div class="asistenciasContainer">
+        <div style="display: flex; justify-content:space-around;">
+          <h2 style="margin-right: 5px;">Asistencias</h2>
+          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+
+            <option selected>Seleccionar materia</option>
+            <option value="1">Matematica</option>
+            <option value="2">Estadística</option>
+            <option value="3">Administración</option>
+          </select>
         </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-              Estadística
-            </button>
-          </h2>
-          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="flush-headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-              Ingeniería de Software I
-            </button>
-          </h2>
-          <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-            <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
-          </div>
-        </div>
+
+
+        <table id='asistenciasTable' class="table">
+          <thead>
+            <tr class="table-light">
+              <th id='asistenciasTableTh' scope="col">Fecha</th>
+              <th id='asistenciasTableTh' scope="col">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-success">
+              <td id='asistenciasTableTd'>12/10/23</td>
+              <td id='asistenciasTableTd'>Presente</td>
+            </tr>
+            <tr class="table-warning">
+              <td id='asistenciasTableTd'>17/10/23</td>
+              <td id='asistenciasTableTd'>Ausente</td>
+            </tr>
+            <tr class="table-success">
+              <td id='asistenciasTableTd'>12/10/23</td>
+              <td id='asistenciasTableTd'>Presente</td>
+            </tr>
+            <tr class="table-success">
+              <td id='asistenciasTableTd'>12/10/23</td>
+              <td id='asistenciasTableTd'>Presente</td>
+            </tr>
+            <tr class="table-warning">
+              <td id='asistenciasTableTd'>17/10/23</td>
+              <td id='asistenciasTableTd'>Ausente</td>
+            </tr>
+            <tr class="table-success">
+              <td id='asistenciasTableTd'>12/10/23</td>
+              <td id='asistenciasTableTd'>Presente</td>
+            </tr>
+            <tr class="table-warning">
+              <td id='asistenciasTableTd'>17/10/23</td>
+              <td id='asistenciasTableTd'>Ausente</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
-    <div class="asistenciasContainer">
-      <h3>Asistencias</h3>
-      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-        <option selected>Seleccionar materia</option>
-        <option value="1">Matematica</option>
-        <option value="2">Estadística</option>
-        <option value="3">Administración</option>
-      </select>
 
-      <table id='asistenciasTable' class="table table-sm table-borderless">
-        <thead>
-          <tr>
-            <th id='asistenciasTableTh' scope="col">Fecha</th>
-            <th id='asistenciasTableTh' scope="col">Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td id='asistenciasTableTd'>15/10/2023</td>
-            <td id='asistenciasTableTd'>Presente</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+
 
   </div>
 
@@ -138,7 +144,7 @@ if (isset($_SESSION['user'])) {
           <form action="" method="post">
             <label for="staticEmail"">Selecciona una materia</label>
     
-                        <select id="materiaSelectExams" name='materiaSelectExams' class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <select id=" materiaSelectExams" name='materiaSelectExams' class="form-select form-select-sm" aria-label=".form-select-sm example">
               <option selected>Materia...</option>
               <?php
               foreach ($materias as $materia) {
@@ -238,7 +244,7 @@ if (isset($_SESSION['user'])) {
           <form action="" method="post">
             <label for="staticEmail"">Selecciona una materia</label>
     
-                        <select id="materiaSelect" name='materiaSelect' class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <select id=" materiaSelect" name='materiaSelect' class="form-select form-select-sm" aria-label=".form-select-sm example">
               <option selected>Materia...</option>
               <?php
               foreach ($materias as $materia) {

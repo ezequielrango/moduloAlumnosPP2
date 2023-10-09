@@ -221,6 +221,43 @@ public function getExamenesByUserIdAndMateriIdFuture($userId, $materiaId)
     
         return false;
     }
+
+
+    
+// Examenes del usuario, fecha anterior al día de hoy con nombre y apellido del profesor
+public function getAllExamsByUserId($userId)
+{
+    $currentDate = date("Y-m-d");
+    $q = "SELECT examenes.ID, Alumno_ID, Materia_ID, FechaExamen, ResultadoExamen, M.NombreMateria AS Materia, CONCAT(U.Nombre, ' ', U.Apellido) AS NombreProfesor
+          FROM examenes 
+          JOIN materias AS M ON examenes.Materia_ID = M.ID 
+          JOIN usuarios AS U ON M.Profesor_ID = U.ID
+          WHERE Alumno_ID = ?  AND FechaExamen <= CURDATE()
+          ORDER BY FechaExamen DESC ";
+    $query = self::$conexion->prepare($q);
+    $query->bind_param("i", $userId);
+
+    if ($query->execute()) {
+        $results = $query->get_result();
+        $exams = [];
+
+        while ($row = $results->fetch_assoc()) {
+            $exams[] = new Examen(
+                $row['ID'],
+                $row['Alumno_ID'],
+                $row['Materia_ID'],
+                $row['FechaExamen'],
+                $row['ResultadoExamen'],
+                $row['Materia'],
+                $row['NombreProfesor']
+            );
+        }
+
+        return $exams;
+    }
+
+    return false;
+}
     
 
 }
