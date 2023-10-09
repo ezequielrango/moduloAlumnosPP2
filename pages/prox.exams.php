@@ -2,6 +2,10 @@
 <?php
 if (isset($_SESSION['user'])) {
     $user = unserialize($_SESSION['user']);
+    $userId = $user->getId();
+    require_once '../controllers/examen.user.controller.php';
+    $examenController = new ExamenUserController();
+    $proxExams = $examenController->getExamenesByUserFuture($userId);
 } else {
     header('Location: index.php');
 }
@@ -32,63 +36,22 @@ if (isset($_SESSION['user'])) {
 
 
             <div class="cardContainer">
-                <div class="row">
-                    <div id='colHome' class="col-sm-6">
+                <div  class="row">
+                <?php foreach ($proxExams as $exam): ?>
+                    <div  id='colHome' class="col-sm-6">
                         <div id='MYcard' class="card my-card">
-                            <div class="card-body">
-                                <h5 class="card-title"> <span class="badge rounded-pill bg-primary text-white">Practica profesionalizante 2</span></h5>
+                            <div  style="box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-webkit-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-moz-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);" class="card-body">
+                                <h5 style="text-align: end;" class="card-title"> <span class="badge rounded-pill bg-primary text-white"><?= $exam->getMateria(); ?></span></h5>
                                 <ul>
-                                    <li>Fecha: 14/10/23</li>
-                                    <li>Profesor: Dante Roselli</li>
+                                    <li>Fecha:  <?= $exam->getFecha(); ?></li>
+                                    <li>Profesor: <?= $exam->getProfesor(); ?></li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div id='colHome' class="col-sm-6">
-                        <div id='MYcard' class="card my-card">
-                            <div class="card-body">
-                                <h5 class="card-title"> <span class="badge rounded-pill bg-primary text-white">Practica profesionalizante 2</span></h5>
-                                <ul>
-                                    <li>Fecha: 14/10/23</li>
-                                    <li>Profesor: Dante Roselli</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div id='colHome' class="col-sm-6">
-                        <div id='MYcard' class="card my-card">
-                            <div class="card-body">
-                                <h5 class="card-title"> <span class="badge rounded-pill bg-primary text-white">Ingenieria de software 2</span></h5>
-                                <ul>
-                                    <li>Fecha: 14/10/23</li>
-                                    <li>Profesor: Juan Marquez</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div id='colHome' class="col-sm-6">
-                        <div id='MYcard' class="card my-card">
-                            <div class="card-body">
-                                <h5 class="card-title"> <span class="badge rounded-pill bg-primary text-white">Programacion 2</span></h5>
-                                <ul>
-                                    <li>Fecha: 14/10/23</li>
-                                    <li>Profesor: Miriam Bozalongo</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div id='colHome' class="col-sm-6">
-                        <div id='MYcard' class="card my-card">
-                            <div class="card-body">
-                                <h5 class="card-title"> <span class="badge rounded-pill bg-primary text-white">Ingles tecnico </span></h5>
-                                <ul>
-                                    <li>Fecha: 14/10/23</li>
-                                    <li>Profesor: Cristina Canvas</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
@@ -236,7 +199,7 @@ if (isset($_SESSION['user'])) {
                     <form action="" method="post">
                         <label for="staticEmail"">Selecciona una materia</label>
     
-                        <select id=" materiaSelectExams" name='materiaSelectExams' class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <select id="materiaSelectExams" name='materiaSelectExams' class="form-select form-select-sm" aria-label=".form-select-sm example">
                             <option selected>Materia...</option>
                             <?php
                             foreach ($materias as $materia) {
@@ -245,20 +208,6 @@ if (isset($_SESSION['user'])) {
                             ?>
                             </select>
                             <div id="examenesDisponibles"></div> <!-- Contenedor para los exámenes disponibles -->
-                </div>
-                <div style="display: flex; justify-content:space-around">
-                    <div>
-                        <input id='radioDownload1' class="form-check-input" type="radio" name="download" id="flexRadioDefault2">
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Descargar
-                        </label>
-                    </div>
-                    <div>
-                        <input id='radioEmail1' class="form-check-input" type="radio" name="download" id="flexRadioDefault2" checked>
-                        <label class="form-check-label" for="flexRadioDefault2">
-                            Enviar a tu email
-                        </label>
-                    </div>
                 </div>
 
                 </form>
@@ -350,7 +299,7 @@ if (isset($_SESSION['user'])) {
                     <form action="" method="post">
                         <label for="staticEmail"">Selecciona una materia</label>
     
-                        <select id=" materiaSelect" name='materiaSelect' class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <select id="materiaSelect" name='materiaSelect' class="form-select form-select-sm" aria-label=".form-select-sm example">
                             <option selected>Materia...</option>
                             <?php
                             foreach ($materias as $materia) {

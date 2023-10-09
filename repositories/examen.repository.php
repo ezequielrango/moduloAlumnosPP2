@@ -185,6 +185,42 @@ public function getExamenesByUserIdAndMateriIdFuture($userId, $materiaId)
     
         return false;
     }
+
+
+    
+    public function getExamenesByUserFuture($userId)
+    {
+        $q = "SELECT  DISTINCT(EX.FechaExamen), EX.ID, I.FechaInscripcion, I.Alumno_ID, I.Materia_ID, EX.ResultadoExamen, M.NombreMateria AS Materia, CONCAT(U.Nombre, ' ', U.Apellido) AS NombreProfesor
+        FROM inscripciones AS I
+        JOIN materias AS M ON M.ID = I.Materia_ID 
+        JOIN usuarios AS U ON M.Profesor_ID = U.ID
+        JOIN examenes AS EX ON EX.ID = I.Examen_ID
+        WHERE I.Alumno_ID = ? AND EX.FechaExamen >= CURDATE() AND EX.ResultadoExamen IS NULL;";
+        $query = self::$conexion->prepare($q);
+        $query->bind_param("i", $userId);
+    
+        if ($query->execute()) {
+            $results = $query->get_result();
+            $exams = [];
+    
+            while ($row = $results->fetch_assoc()) {
+                $exams[] = new FuturosExamenesPorMateria(
+                    $row['ID'],
+                    $row['Alumno_ID'],
+                    $row['Materia_ID'],
+                    $row['FechaExamen'],
+                    $row['ResultadoExamen'],
+                    $row['Materia'],
+                    $row['NombreProfesor'],
+                    $row['FechaInscripcion']
+                );
+            }
+    
+            return $exams;
+        }
+    
+        return false;
+    }
     
 
 }

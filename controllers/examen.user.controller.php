@@ -64,6 +64,20 @@ class ExamenUserController
             return  $Inscription;
         }
     }
+
+
+    public function getExamenesByUserFuture($userId)
+    {
+        $repo = new ExamenRepository();
+        $exams = $repo->getExamenesByUserFuture($userId);
+    
+        if ($exams === false) {
+            return [false, "Error al recuperar exámenes del usuario"];
+        } else {
+            return  $exams;
+        }
+    }
+    
     
     
 
