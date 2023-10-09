@@ -52,7 +52,9 @@
                     <span id="spanToast" style="color:white; font-weight:bold; font-size: 36px; "></span>
                 </div>
                 <form id='formContainerProfileData'>
-                    <div class="row">
+                    <div style="box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-webkit-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-moz-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68); padding:10px;" class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
                                 <div id='containerChangePass'>

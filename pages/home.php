@@ -34,7 +34,9 @@ if (isset($_SESSION['user'])) {
             <div class="cardContainer">
                 <div class="row">
                     <div id='colHome' class="col-sm-6">
-                        <div id='MYcard' class="card my-card">
+                        <div style="box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-webkit-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-moz-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);" id='MYcard' class="card my-card">
                             <div class="card-body">
                                 <h5 class="card-title">Aviso importante<span class="badge rounded-pill bg-warning text-white">Regencia</span> </h5>
                                 <p class="card-text">Buenas noches. Por el problema con el agua, según los comunicado por Regencia, el miércoles 13 tenemos clase virtual.
@@ -43,7 +45,9 @@ if (isset($_SESSION['user'])) {
                         </div>
                     </div>
                     <div id='colHome' class="col-sm-6">
-                        <div id='card' class="card my-card">
+                        <div style="box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-webkit-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-moz-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);" id='card' class="card my-card">
                             <div class="card-body">
                                 <h5 class="card-title">Fecha de TP3 <span class="badge rounded-pill bg-primary text-white">Matematica</span></h5>
                                 <p class="card-text">Buenas noches. Por el problema con el agua, según los comunicado por Regencia, el miércoles 13 tenemos clase virtual.
@@ -52,7 +56,9 @@ if (isset($_SESSION['user'])) {
                         </div>
                     </div>
                     <div id='colHome' class="col-sm-6">
-                        <div id='card' class="card my-card">
+                        <div style="box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-webkit-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);
+-moz-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);" id='card' class="card my-card">
                             <div class="card-body">
                                 <h5 class="card-title">Fecha de TP3 <span class="badge rounded-pill bg-primary text-white">Estadística</span></h5>
                                 <p class="card-text">Buenas noches. Por el problema con el agua, según los comunicado por Regencia, el miércoles 13 tenemos clase virtual.
