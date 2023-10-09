@@ -78,6 +78,17 @@ class ExamenUserController
         }
     }
     
+    public function getAllExamsByUserId($userId)
+    {
+        $repo = new ExamenRepository();
+
+        $exams = $repo->getAllExamsByUserId($userId);
+        if ($exams === false) {
+            return [ false, "Error al recuperar exámenes del usuario" ];
+        } else {
+            return $exams;
+        }
+    }
     
     
 
