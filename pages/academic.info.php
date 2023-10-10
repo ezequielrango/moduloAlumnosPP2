@@ -8,7 +8,6 @@ if (isset($_SESSION['user'])) {
   require_once '../controllers/examen.user.controller.php';
   require_once '../controllers/asistencia.controller.php';
   $examenController = new ExamenUserController();
-  $asistenciaController = new AsistenciaController();
   $materias = $examenController->getMateriasByUserId($userId);
   $examsHistory = $examenController->getAllExamsByUserId($userId);
 } else {

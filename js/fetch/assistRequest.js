@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const materiaSelectAssist = document.getElementById('materiaSelectAssist');
     const asistenciasTableBody = document.querySelector('#asistenciasTable tbody');
 
-    // CARGA DATOS MODAL INSCRIPCIÓN EXAMEN
     materiaSelectAssist.addEventListener("change", function () {
         const materiaSeleccionada = materiaSelectAssist.value;
 

@@ -132,7 +132,7 @@ if (isset($_SESSION['user'])) {
                     </h2>
                     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <img src="../assets/images/parciales.png" style="width: 200px; height:100px;">
+                            <img id='parcialesLink' src="../assets/images/parciales.png" style="width: 200px; height:100px;">
                         </div>
                     </div>
                 </div>
@@ -182,6 +182,27 @@ if (isset($_SESSION['user'])) {
         </div>
     </div>
 
+
+        
+    <!-- MODAL PARCIALES -->
+
+    <div class="modal" id="modalParciales" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><b>FECHAS DE PARCIALES</b></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="display:flex; justify-content:center">
+                    <figure class="zoom" onmousemove="zoom(event)" style="background-image: url(../assets/images/parciales.png)">
+                        <img src="../assets/images/parciales.png" class="imgModal" style="width: 100%; height:100%;">
+                    </figure>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <!-- INSCRIPCION EXAMEN -->
