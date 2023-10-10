@@ -50,7 +50,7 @@ if (isset($_SESSION['user'])) {
 -moz-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);" id='card' class="card my-card">
                             <div class="card-body">
                                 <h5 class="card-title">Fecha de TP3 <span class="badge rounded-pill bg-primary text-white">Matematica</span></h5>
-                                <p class="card-text">Buenas noches. Por el problema con el agua, según los comunicado por Regencia, el miércoles 13 tenemos clase virtual.
+                                <p class="card-text">Buenas noches. La siguiente clase será de consultas relacionadas a la actividad.
                                     Saludos</p>
                             </div>
                         </div>
@@ -61,8 +61,7 @@ if (isset($_SESSION['user'])) {
 -moz-box-shadow: 5px 4px 13px 0px rgba(0,0,0,0.68);" id='card' class="card my-card">
                             <div class="card-body">
                                 <h5 class="card-title">Fecha de TP3 <span class="badge rounded-pill bg-primary text-white">Estadística</span></h5>
-                                <p class="card-text">Buenas noches. Por el problema con el agua, según los comunicado por Regencia, el miércoles 13 tenemos clase virtual.
-                                    Saludos</p>
+                                <p class="card-text">Por favor entregar en tiempo y forma la actividad de gráficos. Saludos</p>
                             </div>
                         </div>
                     </div>
