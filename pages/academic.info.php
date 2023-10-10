@@ -6,7 +6,9 @@ if (isset($_SESSION['user'])) {
   $userId = $user->getId();
   //Modal certificado examen
   require_once '../controllers/examen.user.controller.php';
+  require_once '../controllers/asistencia.controller.php';
   $examenController = new ExamenUserController();
+  $asistenciaController = new AsistenciaController();
   $materias = $examenController->getMateriasByUserId($userId);
   $examsHistory = $examenController->getAllExamsByUserId($userId);
 } else {
@@ -71,13 +73,14 @@ if (isset($_SESSION['user'])) {
       <div class="asistenciasContainer">
         <div style="display: flex; justify-content:space-around;">
           <h2 style="margin-right: 5px;">Asistencias</h2>
-          <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-
-            <option selected>Seleccionar materia</option>
-            <option value="1">Matematica</option>
-            <option value="2">Estadística</option>
-            <option value="3">Administración</option>
-          </select>
+          <select id="materiaSelectAssist" name='materiaSelect' class="form-select form-select-sm" aria-label=".form-select-sm example">
+              <option selected>Materia...</option>
+              <?php
+              foreach ($materias as $materia) {
+                echo '<option value="' . $materia->getId() . '">' . $materia->getNombre() . '</option>';
+              }
+              ?>
+              </select>
         </div>
 
 
@@ -89,34 +92,6 @@ if (isset($_SESSION['user'])) {
             </tr>
           </thead>
           <tbody>
-            <tr class="table-success">
-              <td id='asistenciasTableTd'>12/10/23</td>
-              <td id='asistenciasTableTd'>Presente</td>
-            </tr>
-            <tr class="table-warning">
-              <td id='asistenciasTableTd'>17/10/23</td>
-              <td id='asistenciasTableTd'>Ausente</td>
-            </tr>
-            <tr class="table-success">
-              <td id='asistenciasTableTd'>12/10/23</td>
-              <td id='asistenciasTableTd'>Presente</td>
-            </tr>
-            <tr class="table-success">
-              <td id='asistenciasTableTd'>12/10/23</td>
-              <td id='asistenciasTableTd'>Presente</td>
-            </tr>
-            <tr class="table-warning">
-              <td id='asistenciasTableTd'>17/10/23</td>
-              <td id='asistenciasTableTd'>Ausente</td>
-            </tr>
-            <tr class="table-success">
-              <td id='asistenciasTableTd'>12/10/23</td>
-              <td id='asistenciasTableTd'>Presente</td>
-            </tr>
-            <tr class="table-warning">
-              <td id='asistenciasTableTd'>17/10/23</td>
-              <td id='asistenciasTableTd'>Ausente</td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -144,7 +119,7 @@ if (isset($_SESSION['user'])) {
           <form action="" method="post">
             <label for="staticEmail"">Selecciona una materia</label>
     
-                        <select id=" materiaSelectExams" name='materiaSelectExams' class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <select id="materiaSelectExams" name='materiaSelectExams' class="form-select form-select-sm" aria-label=".form-select-sm example">
               <option selected>Materia...</option>
               <?php
               foreach ($materias as $materia) {
@@ -244,7 +219,7 @@ if (isset($_SESSION['user'])) {
           <form action="" method="post">
             <label for="staticEmail"">Selecciona una materia</label>
     
-                        <select id=" materiaSelect" name='materiaSelect' class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <select id="materiaSelect" name='materiaSelect' class="form-select form-select-sm" aria-label=".form-select-sm example">
               <option selected>Materia...</option>
               <?php
               foreach ($materias as $materia) {
@@ -293,6 +268,7 @@ if (isset($_SESSION['user'])) {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
   <script src="../js/fetch/certificateRequest.js"></script>
+  <script src="../js/fetch/assistRequest.js"></script>
   <script src="../js/front/changeTheme.js"></script>
   <script src="../js/front/openModalCertificates.js"></script>
 </body>
