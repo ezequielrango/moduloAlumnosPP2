@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const alumnoRegularLink = document.getElementById('alumnoRegularLink');
     const constanciaExamenLink = document.getElementById('constanciaExamenLink');
     const inscripcionExamenLink = document.getElementById('inscripcionExamenLink');
+    const parcialesLink = document.getElementById('parcialesLink');
+
     const spanToast = document.getElementById('spanToast');
 
     const setspanToast = () => {
@@ -31,7 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.show();
     });
 
-
+    parcialesLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        const modal = new bootstrap.Modal(document.getElementById('modalParciales'));
+        modal.show();
+    });
 
     document.getElementById("confirmBtn").addEventListener('click', function(e) {
         e.preventDefault();
@@ -59,3 +65,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
+function zoom(e){
+    var zoomer = e.currentTarget;
+    e.offsetX ? offsetX = e.offsetX : offsetX = e.touches[0].pageX
+    e.offsetY ? offsetY = e.offsetY : offsetX = e.touches[0].pageX
+    x = offsetX/zoomer.offsetWidth*100
+    y = offsetY/zoomer.offsetHeight*100
+    zoomer.style.backgroundPosition = x + '% ' + y + '%';
+  }
